@@ -1,39 +1,457 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Mohamed Riyas Rahuman</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohamed Riyas Rahuman | Data Scientist</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0a0f1e;
+    --bg2: #0d1526;
+    --bg3: #111d35;
+    --accent: #3b82f6;
+    --accent2: #06b6d4;
+    --accent3: #8b5cf6;
+    --text: #f0f4ff;
+    --text2: #94a3b8;
+    --text3: #64748b;
+    --card: rgba(255,255,255,0.04);
+    --border: rgba(255,255,255,0.08);
+  }
+
+  body {
+    font-family: 'Sora', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(59,130,246,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,15,30,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 0;
+  }
+  .nav-inner { max-width: 960px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
+  .logo { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--accent2); }
+  .logo span { color: var(--accent3); }
+  nav ul { display: flex; gap: 32px; list-style: none; }
+  nav a { font-size: 13px; color: var(--text2); text-decoration: none; transition: color .2s; letter-spacing: .03em; }
+  nav a:hover { color: var(--accent2); }
+
+  /* HERO */
+  .hero { padding: 100px 0 80px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3);
+    border-radius: 100px; padding: 6px 16px;
+    font-size: 12px; font-family: 'JetBrains Mono', monospace; color: var(--accent2);
+    margin-bottom: 28px; animation: fadeUp .6s ease both;
+  }
+  .hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent2); animation: pulse 2s infinite; display: inline-block; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+  .hero h1 {
+    font-size: clamp(36px, 6vw, 64px); font-weight: 700; line-height: 1.1;
+    animation: fadeUp .6s .1s ease both;
+  }
+  .hero h1 .role {
+    background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-desc {
+    max-width: 600px; margin: 24px 0 40px;
+    font-size: 16px; line-height: 1.8; color: var(--text2);
+    animation: fadeUp .6s .2s ease both;
+  }
+
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; animation: fadeUp .6s .3s ease both; }
+  .btn-primary {
+    padding: 12px 28px; border-radius: 8px; font-size: 14px; font-weight: 600;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #fff; text-decoration: none; border: none; cursor: pointer;
+    transition: transform .2s, box-shadow .2s; display: inline-block;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(59,130,246,0.4); }
+  .btn-ghost {
+    padding: 12px 28px; border-radius: 8px; font-size: 14px; font-weight: 600;
+    background: transparent; color: var(--text2); text-decoration: none;
+    border: 1px solid var(--border); transition: all .2s; display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-stats { display: flex; gap: 40px; margin-top: 60px; animation: fadeUp .6s .4s ease both; flex-wrap: wrap; }
+  .stat-num { font-size: 28px; font-weight: 700; color: var(--text); }
+  .stat-label { font-size: 12px; color: var(--text3); margin-top: 4px; letter-spacing: .05em; text-transform: uppercase; }
+
+  /* SECTIONS */
+  section { padding: 80px 0; }
+  .section-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    color: var(--accent2); letter-spacing: .1em; text-transform: uppercase;
+    margin-bottom: 12px; display: flex; align-items: center; gap: 10px;
+  }
+  .section-tag::before { content: '//'; color: var(--accent3); }
+  .section-title { font-size: 32px; font-weight: 700; margin-bottom: 48px; }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+  .skill-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px;
+    transition: border-color .3s, transform .3s;
+  }
+  .skill-card:hover { border-color: rgba(59,130,246,0.4); transform: translateY(-4px); }
+  .skill-card-icon { font-size: 24px; margin-bottom: 12px; }
+  .skill-card-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-size: 11px; padding: 3px 10px; border-radius: 100px;
+    background: rgba(59,130,246,0.1); color: var(--accent); border: 1px solid rgba(59,130,246,0.2);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .tag.teal { background: rgba(6,182,212,0.1); color: var(--accent2); border-color: rgba(6,182,212,0.2); }
+  .tag.purple { background: rgba(139,92,246,0.1); color: var(--accent3); border-color: rgba(139,92,246,0.2); }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+  .project-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 28px; position: relative; overflow: hidden;
+    transition: border-color .3s, transform .3s;
+  }
+  .project-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0; transition: opacity .3s;
+  }
+  .project-card:hover { border-color: rgba(59,130,246,0.3); transform: translateY(-6px); }
+  .project-card:hover::before { opacity: 1; }
+  .project-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent3); margin-bottom: 16px; }
+  .project-title { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+  .project-desc { font-size: 14px; color: var(--text2); line-height: 1.7; margin-bottom: 20px; }
+  .project-tech { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  /* EXPERIENCE */
+  .exp-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 32px; border-left: 3px solid var(--accent);
+  }
+  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: 8px; }
+  .exp-title { font-size: 18px; font-weight: 700; }
+  .exp-company { color: var(--accent2); font-size: 14px; margin-bottom: 4px; }
+  .exp-period {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text3);
+    background: rgba(255,255,255,0.05); padding: 4px 12px; border-radius: 100px; border: 1px solid var(--border);
+  }
+  .exp-bullets { margin-top: 16px; padding-left: 0; list-style: none; }
+  .exp-bullets li { font-size: 14px; color: var(--text2); line-height: 1.7; padding: 6px 0 6px 20px; position: relative; }
+  .exp-bullets li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
+
+  /* EDUCATION */
+  .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .edu-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+  .edu-degree { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+  .edu-school { font-size: 14px; color: var(--accent2); margin-bottom: 4px; }
+  .edu-year { font-size: 12px; color: var(--text3); font-family: 'JetBrains Mono', monospace; }
+
+  .cert-list { display: flex; flex-direction: column; gap: 12px; margin-top: 32px; }
+  .cert-item { display: flex; align-items: center; gap: 16px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 20px; }
+  .cert-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent2); flex-shrink: 0; }
+  .cert-name { font-size: 14px; }
+  .cert-issuer { font-size: 12px; color: var(--text3); margin-top: 2px; }
+
+  /* CONTACT */
+  .contact-section {
+    background: linear-gradient(135deg, rgba(59,130,246,0.1), rgba(139,92,246,0.1));
+    border: 1px solid rgba(59,130,246,0.2); border-radius: 24px; padding: 60px 48px; text-align: center;
+  }
+  .contact-section h2 { font-size: 36px; font-weight: 700; margin-bottom: 16px; }
+  .contact-section p { font-size: 16px; color: var(--text2); margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .contact-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+  .contact-link {
+    display: flex; align-items: center; gap: 8px;
+    padding: 12px 24px; border-radius: 10px; text-decoration: none;
+    font-size: 14px; font-weight: 600; transition: all .2s;
+  }
+  .contact-link.github { background: rgba(255,255,255,0.08); color: var(--text); border: 1px solid var(--border); }
+  .contact-link.github:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
+  .contact-link.email { background: linear-gradient(135deg, var(--accent), var(--accent3)); color: #fff; }
+  .contact-link.email:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(59,130,246,0.4); }
+
+  footer { text-align: center; padding: 32px 0; border-top: 1px solid var(--border); font-size: 13px; color: var(--text3); font-family: 'JetBrains Mono', monospace; }
+
+  /* scroll reveal */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 600px) {
+    nav ul { gap: 16px; }
+    .hero { padding: 60px 0 40px; }
+    .contact-section { padding: 40px 24px; }
+  }
+</style>
 </head>
 <body>
 
-    <h1>Mohamed Riyas Rahuman</h1>
-
-    <h2>Data Scientist | Data Analyst</h2>
-
-    <p>
-        MSc Data Science & Business Analysis Graduate
-    </p>
-
-    <h2>Skills</h2>
-
+<nav>
+  <div class="nav-inner">
+    <div class="logo">&lt;<span>MRR</span> /&gt;</div>
     <ul>
-        <li>Python</li>
-        <li>SQL</li>
-        <li>Power BI</li>
-        <li>Machine Learning</li>
-        <li>Data Analysis</li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
+  </div>
+</nav>
 
-    <h2>Projects</h2>
+<div class="container">
 
-    <h3>Loan Default Prediction</h3>
-    <p>Machine Learning model using Logistic Regression.</p>
+  <!-- HERO -->
+  <section class="hero" id="about">
+    <div class="hero-badge">Available for opportunities</div>
+    <h1>
+      Mohamed Riyas<br>Rahuman<br>
+      <span class="role">Data Scientist & ML Engineer</span>
+    </h1>
+    <p class="hero-desc">
+      M.Sc. Data Science & Business Analytics graduate passionate about turning data into decisions. I build machine learning systems, REST APIs, and BI dashboards that solve real business problems.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-ghost">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">3</div><div class="stat-label">ML Projects</div></div>
+      <div><div class="stat-num">5+</div><div class="stat-label">Technologies</div></div>
+      <div><div class="stat-num">2026</div><div class="stat-label">MSc Graduate</div></div>
+    </div>
+  </section>
 
-    <h3>Sales Prediction</h3>
-    <p>Data analysis and predictive modeling project.</p>
+  <!-- SKILLS -->
+  <section id="skills" class="reveal">
+    <div class="section-tag">expertise</div>
+    <div class="section-title">Technical Skills</div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-icon">🐍</div>
+        <div class="skill-card-title">Programming</div>
+        <div class="skill-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Java</span>
+          <span class="tag">SQL</span>
+          <span class="tag">C++</span>
+          <span class="tag">C</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🤖</div>
+        <div class="skill-card-title">Machine Learning</div>
+        <div class="skill-tags">
+          <span class="tag teal">Scikit-Learn</span>
+          <span class="tag teal">Feature Eng.</span>
+          <span class="tag teal">Model Eval</span>
+          <span class="tag teal">EDA</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">⚡</div>
+        <div class="skill-card-title">Backend & APIs</div>
+        <div class="skill-tags">
+          <span class="tag purple">FastAPI</span>
+          <span class="tag purple">Flask</span>
+          <span class="tag purple">REST APIs</span>
+          <span class="tag purple">PostgreSQL</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">📊</div>
+        <div class="skill-card-title">Data & BI</div>
+        <div class="skill-tags">
+          <span class="tag">Power BI</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">ETL</span>
+          <span class="tag">Dashboards</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🛠️</div>
+        <div class="skill-card-title">Dev Tools</div>
+        <div class="skill-tags">
+          <span class="tag teal">Git</span>
+          <span class="tag teal">GitHub</span>
+          <span class="tag teal">VS Code</span>
+          <span class="tag teal">Jupyter</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🌐</div>
+        <div class="skill-card-title">Web</div>
+        <div class="skill-tags">
+          <span class="tag purple">HTML</span>
+          <span class="tag purple">CSS</span>
+          <span class="tag purple">JavaScript</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <h2>Contact</h2>
+  <!-- PROJECTS -->
+  <section id="projects" class="reveal">
+    <div class="section-tag">work</div>
+    <div class="section-title">Featured Projects</div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-num">01</div>
+        <div class="project-title">Loan Default Prediction System</div>
+        <div class="project-desc">End-to-end ML application predicting loan default risks using customer financial data. Includes EDA, feature engineering, classification models, and a Flask web interface for credit risk assessment.</div>
+        <div class="project-tech">
+          <span class="tag">Python</span>
+          <span class="tag teal">Scikit-Learn</span>
+          <span class="tag purple">Flask</span>
+          <span class="tag">SQL</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-num">02</div>
+        <div class="project-title">Employee Management System</div>
+        <div class="project-desc">Database-driven EMS with full CRUD operations, OOP architecture, and advanced SQL for reporting, retrieval, and transaction management. Built for reliability and maintainability.</div>
+        <div class="project-tech">
+          <span class="tag">Java</span>
+          <span class="tag teal">MySQL</span>
+          <span class="tag purple">OOP</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-num">03</div>
+        <div class="project-title">Fairness-Aware Bail Prediction</div>
+        <div class="project-desc">Predictive analytics solution using ML and legal case data with focus on transparent, fairness-aware AI decision support. REST API backend with PostgreSQL for secure data management.</div>
+        <div class="project-tech">
+          <span class="tag">Python</span>
+          <span class="tag teal">FastAPI</span>
+          <span class="tag purple">PostgreSQL</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <p>Email: your-email@gmail.com</p>
+  <!-- EXPERIENCE -->
+  <section id="experience" class="reveal">
+    <div class="section-tag">history</div>
+    <div class="section-title">Experience</div>
+    <div class="exp-card">
+      <div class="exp-header">
+        <div>
+          <div class="exp-title">Machine Learning & Data Analytics Intern</div>
+          <div class="exp-company">Rajaj Tech Pvt. Ltd.</div>
+        </div>
+        <div class="exp-period">Internship</div>
+      </div>
+      <ul class="exp-bullets">
+        <li>Developed end-to-end ML and analytics solutions using Python and SQL for business-focused use cases</li>
+        <li>Performed data collection, preprocessing, feature engineering, and EDA to improve data quality</li>
+        <li>Built predictive ML models and evaluated performance using industry-standard metrics</li>
+        <li>Designed REST APIs using FastAPI with PostgreSQL database integration for scalable backend apps</li>
+        <li>Created reports, dashboards, and visualizations to communicate business insights effectively</li>
+        <li>Applied OOP, debugging, testing, documentation, and version control using Git &amp; GitHub</li>
+      </ul>
+    </div>
 
+    <!-- EDUCATION -->
+    <div style="margin-top: 64px;">
+      <div class="section-tag" style="margin-top:0">education</div>
+      <div style="font-size:24px; font-weight:700; margin-bottom:24px; margin-top:12px;">Academic Background</div>
+      <div class="edu-grid">
+        <div class="edu-card">
+          <div class="edu-degree">M.Sc. Data Science with Business Analytics</div>
+          <div class="edu-school">Rathinam College of Arts and Science</div>
+          <div class="edu-year">2024 – 2026</div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-degree">B.Sc. Mathematics</div>
+          <div class="edu-school">Alagappa Government Arts College</div>
+          <div class="edu-year">2021 – 2024</div>
+        </div>
+      </div>
+      <div class="cert-list">
+        <div class="cert-item">
+          <div class="cert-dot"></div>
+          <div><div class="cert-name">Neural Networks and Deep Learning</div><div class="cert-issuer">Coursera</div></div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-dot"></div>
+          <div><div class="cert-name">Python for Data Science, AI &amp; Development</div><div class="cert-issuer">Coursera</div></div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-dot"></div>
+          <div><div class="cert-name">Machine Learning Certification</div><div class="cert-issuer">Certification Program</div></div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-dot"></div>
+          <div><div class="cert-name">Data Analytics Certification</div><div class="cert-issuer">Certification Program</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="reveal" style="padding-bottom: 80px;">
+    <div class="contact-section">
+      <h2>Let's Work Together</h2>
+      <p>Open to Data Analyst, ML Engineer, Data Scientist, and Software Developer roles. Let's connect!</p>
+      <div class="contact-links">
+        <a href="https://github.com/YOUR_GITHUB_USERNAME" class="contact-link github" target="_blank">⟨/⟩ GitHub</a>
+        <a href="mailto:YOUR_EMAIL@gmail.com" class="contact-link email">✉ Send Email</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="container">
+    Built with passion · Mohamed Riyas Rahuman · 2025
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
 </body>
 </html>
