@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<h1>Mohamed Riyas Rahuman M</h1>
-<h2>Software Developer | Python Developer | Data Analyst | Data Engineer | Data Scientist</h2>
+<title>Mohamed Riyas Rahuman M</title>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -136,6 +135,7 @@
   }
   .tag.teal { background: rgba(6,182,212,0.1); color: var(--accent2); border-color: rgba(6,182,212,0.2); }
   .tag.purple { background: rgba(139,92,246,0.1); color: var(--accent3); border-color: rgba(139,92,246,0.2); }
+  .tag.green { background: rgba(34,197,94,0.1); color: #22c55e; border-color: rgba(34,197,94,0.2); }
 
   /* PROJECTS */
   .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
@@ -151,10 +151,51 @@
   }
   .project-card:hover { border-color: rgba(59,130,246,0.3); transform: translateY(-6px); }
   .project-card:hover::before { opacity: 1; }
+
+  /* FEATURED project card — always glowing */
+  .project-card.featured {
+    border-color: rgba(139,92,246,0.4);
+    background: linear-gradient(135deg, rgba(139,92,246,0.06), rgba(6,182,212,0.04));
+  }
+  .project-card.featured::before {
+    opacity: 1;
+    background: linear-gradient(90deg, var(--accent3), var(--accent2), var(--accent));
+  }
+  .project-card.featured:hover { border-color: rgba(139,92,246,0.7); transform: translateY(-8px); }
+
   .project-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent3); margin-bottom: 16px; }
   .project-title { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
   .project-desc { font-size: 14px; color: var(--text2); line-height: 1.7; margin-bottom: 20px; }
   .project-tech { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  /* NEW badge */
+  .new-badge {
+    display: inline-block;
+    font-size: 10px; font-weight: 700; font-family: 'JetBrains Mono', monospace;
+    background: linear-gradient(135deg, var(--accent3), var(--accent2));
+    color: #fff; padding: 2px 10px; border-radius: 100px;
+    margin-left: 10px; vertical-align: middle; letter-spacing: .05em;
+    animation: glow 2s ease-in-out infinite;
+  }
+  @keyframes glow {
+    0%,100% { box-shadow: 0 0 6px rgba(139,92,246,0.5); }
+    50% { box-shadow: 0 0 16px rgba(139,92,246,0.9); }
+  }
+
+  /* RAG highlight pills */
+  .rag-features {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin: 14px 0 18px;
+    padding: 14px;
+    background: rgba(139,92,246,0.06);
+    border: 1px solid rgba(139,92,246,0.15);
+    border-radius: 10px;
+  }
+  .rag-feature-item {
+    font-size: 11px; color: var(--text2);
+    display: flex; align-items: center; gap: 4px;
+  }
+  .rag-feature-item::before { content: '✓'; color: var(--accent2); font-weight: 700; }
 
   /* EXPERIENCE */
   .exp-card {
@@ -241,15 +282,15 @@
       <span class="role">Data Scientist & ML Engineer</span>
     </h1>
     <p class="hero-desc">
-      M.Sc. Data Science & Business Analytics graduate passionate about turning data into decisions. I build machine learning systems, REST APIs, and BI dashboards that solve real business problems.
+      M.Sc. Data Science & Business Analytics graduate passionate about turning data into decisions. I build machine learning systems, RAG pipelines, REST APIs, and BI dashboards that solve real business problems.
     </p>
     <div class="hero-btns">
       <a href="#projects" class="btn-primary">View Projects</a>
       <a href="#contact" class="btn-ghost">Get in Touch</a>
     </div>
     <div class="hero-stats">
-      <div><div class="stat-num">3</div><div class="stat-label">ML Projects</div></div>
-      <div><div class="stat-num">5+</div><div class="stat-label">Technologies</div></div>
+      <div><div class="stat-num">4</div><div class="stat-label">ML Projects</div></div>
+      <div><div class="stat-num">10+</div><div class="stat-label">Technologies</div></div>
       <div><div class="stat-num">2026</div><div class="stat-label">MSc Graduate</div></div>
     </div>
   </section>
@@ -281,13 +322,24 @@
         </div>
       </div>
       <div class="skill-card">
+        <div class="skill-card-icon">🧠</div>
+        <div class="skill-card-title">AI & LLMs</div>
+        <div class="skill-tags">
+          <span class="tag purple">RAG</span>
+          <span class="tag purple">FAISS</span>
+          <span class="tag purple">LLaMA</span>
+          <span class="tag purple">Groq</span>
+          <span class="tag purple">Embeddings</span>
+        </div>
+      </div>
+      <div class="skill-card">
         <div class="skill-card-icon">⚡</div>
         <div class="skill-card-title">Backend & APIs</div>
         <div class="skill-tags">
-          <span class="tag purple">FastAPI</span>
-          <span class="tag purple">Flask</span>
-          <span class="tag purple">REST APIs</span>
-          <span class="tag purple">PostgreSQL</span>
+          <span class="tag green">FastAPI</span>
+          <span class="tag green">Flask</span>
+          <span class="tag green">REST APIs</span>
+          <span class="tag green">PostgreSQL</span>
         </div>
       </div>
       <div class="skill-card">
@@ -327,6 +379,37 @@
     <div class="section-tag">work</div>
     <div class="section-title">Featured Projects</div>
     <div class="projects-grid">
+
+      <!-- PROJECT 04 — RAG (NEW, FEATURED) -->
+      <div class="project-card featured">
+        <div class="project-num">04 <span class="new-badge">NEW</span></div>
+        <div class="project-title">AI Research Assistant</div>
+        <div class="project-desc">
+          Full-stack RAG (Retrieval-Augmented Generation) application. Upload research papers, ask questions in plain English, and get grounded answers with page-level citations — using only your documents, not the LLM's training data.
+        </div>
+        <div class="rag-features">
+          <div class="rag-feature-item">Multi-PDF upload</div>
+          <div class="rag-feature-item">FAISS vector search</div>
+          <div class="rag-feature-item">Page-level citations</div>
+          <div class="rag-feature-item">Conversation memory</div>
+          <div class="rag-feature-item">Voice input</div>
+          <div class="rag-feature-item">Dark / light theme</div>
+          <div class="rag-feature-item">Download as PDF</div>
+          <div class="rag-feature-item">Keyword search</div>
+        </div>
+        <div class="project-tech">
+          <span class="tag purple">RAG</span>
+          <span class="tag purple">FAISS</span>
+          <span class="tag purple">LLaMA 3.1</span>
+          <span class="tag teal">FastAPI</span>
+          <span class="tag teal">Groq API</span>
+          <span class="tag">sentence-transformers</span>
+          <span class="tag">Python</span>
+          <span class="tag">JavaScript</span>
+        </div>
+      </div>
+
+      <!-- PROJECT 01 -->
       <div class="project-card">
         <div class="project-num">01</div>
         <div class="project-title">Loan Default Prediction System</div>
@@ -338,18 +421,10 @@
           <span class="tag">SQL</span>
         </div>
       </div>
+
+      <!-- PROJECT 02 -->
       <div class="project-card">
         <div class="project-num">02</div>
-        <div class="project-title">Employee Management System</div>
-        <div class="project-desc">Database-driven EMS with full CRUD operations, OOP architecture, and advanced SQL for reporting, retrieval, and transaction management. Built for reliability and maintainability.</div>
-        <div class="project-tech">
-          <span class="tag">Java</span>
-          <span class="tag teal">MySQL</span>
-          <span class="tag purple">OOP</span>
-        </div>
-      </div>
-      <div class="project-card">
-        <div class="project-num">03</div>
         <div class="project-title">Fairness-Aware Bail Prediction</div>
         <div class="project-desc">Predictive analytics solution using ML and legal case data with focus on transparent, fairness-aware AI decision support. REST API backend with PostgreSQL for secure data management.</div>
         <div class="project-tech">
@@ -358,6 +433,19 @@
           <span class="tag purple">PostgreSQL</span>
         </div>
       </div>
+
+      <!-- PROJECT 03 -->
+      <div class="project-card">
+        <div class="project-num">03</div>
+        <div class="project-title">Employee Management System</div>
+        <div class="project-desc">Database-driven EMS with full CRUD operations, OOP architecture, and advanced SQL for reporting, retrieval, and transaction management. Built for reliability and maintainability.</div>
+        <div class="project-tech">
+          <span class="tag">Java</span>
+          <span class="tag teal">MySQL</span>
+          <span class="tag purple">OOP</span>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -378,6 +466,7 @@
         <li>Performed data collection, preprocessing, feature engineering, and EDA to improve data quality</li>
         <li>Built predictive ML models and evaluated performance using industry-standard metrics</li>
         <li>Designed REST APIs using FastAPI with PostgreSQL database integration for scalable backend apps</li>
+        <li>Built a full-stack AI Research Assistant using RAG, FAISS vector search, and Groq LLaMA API</li>
         <li>Created reports, dashboards, and visualizations to communicate business insights effectively</li>
         <li>Applied OOP, debugging, testing, documentation, and version control using Git &amp; GitHub</li>
       </ul>
