@@ -1,6 +1,6 @@
 👋 Hi, I'm Mohamed Riyas Rahuman M
 
-🎓 M.Sc. Graduate in Data Science with Business Analytics
+🎓 M.Sc. Graduate in Data Science with Business Analysis
 🤖 AI | Machine Learning | Generative AI | LLMs | RAG
 💻 Python Developer | Data Science Enthusiast
 📍 Tamil Nadu, India
@@ -25,7 +25,6 @@ Python
 SQL
 Java
 C++
-C
 AI & Machine Learning
 Machine Learning
 Deep Learning
@@ -79,9 +78,6 @@ Simplilearn – Business Analytics with Excel
 
 💼 LinkedIn:
 https://www.linkedin.com/in/riyas3524/
-
-💻 GitHub:
-https://github.com/Mohamed-Riyas-Rahuman
 
 🌐 Portfolio:
 https://mohamed-riyas-rahuman.github.io/Mohamed-Riyas-Rahuman/
